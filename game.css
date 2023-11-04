@@ -26,6 +26,7 @@ body {
 .difficulty{
     display: flex;
     align-items: center;
+    flex-direction: column-reverse;
     gap: 1rem;
     padding-right: 1rem;
 }
@@ -95,3 +96,4 @@ input[type=number]:hover::-webkit-inner-spin-button {
 .smile {
     width: 90px;
 }
+

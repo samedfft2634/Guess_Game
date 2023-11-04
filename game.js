@@ -12,8 +12,9 @@ const difficult = document.querySelector(".difficult");
 const level = document.querySelector(".dif-level");
 
 let maxRandom = localStorage.getItem("maxRandom") ? parseInt(localStorage.getItem("maxRandom"),10) : 20
+let difficulty = localStorage.getItem("difficulty") || "Easy";
 
-
+	
 againBtn.style.visibility = "hidden";
 window.addEventListener("load", () => {
 	inputField.focus();
@@ -21,25 +22,66 @@ window.addEventListener("load", () => {
 inputField.style.outline = "none";
 let random = Math.ceil(Math.random() * maxRandom);
 let score = 10;
-let highestScore = 0;
 console.log(random);
 
+//difficulty
+const applyEasyStyle = () => {
+    difficult.textContent = "Easy";
+    difficult.style.backgroundColor = "limegreen";
+    difficult.style.color = "#fff";
+    difficult.style.padding = ".7rem 2.2rem";
+    level.textContent = "😏(1-20)";
+    maxRandom = 20;
+};
+
+const applyDifficultStyle = () => {
+    difficult.textContent = "Difficult";
+    difficult.style.backgroundColor = "red";
+    difficult.style.color = "#fff";
+    difficult.style.padding = ".7rem ";
+    level.textContent = "😈(1-50)";
+    maxRandom = 50;
+};
+//
+
+//loading
+window.addEventListener("load", () => {
+    if (difficulty === "Difficult") {
+        applyDifficultStyle();
+    } else {
+        applyEasyStyle();
+    }
+    random = Math.ceil(Math.random() * maxRandom);
+});
+//
+
+// event listener 
+difficult.addEventListener("click", () => {
+    if (difficulty === "Easy") {
+        difficulty = "Difficult";
+        applyDifficultStyle();
+    } else {
+        difficulty = "Easy";
+        applyEasyStyle();
+    }
+    localStorage.setItem("difficulty", difficulty);
+    localStorage.setItem("maxRandom", maxRandom.toString());
+    random = Math.ceil(Math.random() * maxRandom);
+    console.log("yeni sayi ",random);
+});
+
+
+// input value controller
 inputField.addEventListener("input", () => {
 	inputField.value = inputField.value.replace(/[e\.-]/gi, "");
-	if(inputField.value > 20 || inputField.value == 0){
+	if(difficulty === "Easy" && ((inputField.value > 20 || inputField.value == 0))){
 		inputField.value =inputField.value.slice(0,-1)
+	} else {
+		(inputField.value > 50 || inputField.value == 0) 
+		&& (inputField.value = inputField.value.slice(0,-1))
+		
 	}
 });
-difficult.addEventListener("click",()=>{
-	maxRandom = 50
-	difficult.style.backgroundColor = "red"
-	difficult.style.color = "#fff"
-	difficult.textContent = "Difficult"
-	level.textContent = "(1-50)"
-	localStorage.setItem("maxRandom",maxRandom)
-	random = Math.ceil(Math.random()* maxRandom)
-	console.log(random)
-})
 
 inputField.addEventListener("focus", () => {
 	title.innerText = "Game Started!";
@@ -96,7 +138,7 @@ againBtn.addEventListener("click", () => {
 	result.textContent = "?";
 	guesses.textContent = 10;
 	score = 10;
-	random = Math.ceil(Math.random() * 20);
+	difficult.click()
 	preGue.textContent = "";
 	console.log(random);
 });
