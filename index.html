@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="./game.css" />
 		<title>Guess Number</title>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	</head>
 	<body>
 		<!-- nav  -->
@@ -18,7 +19,7 @@
 		<main class="container">
 			<!-- ===================== header ====================== -->
 			<section class="header">
-				<h1>Guess The Number</h1>
+				<h1 class="title">Guess The Number</h1>
 				<div class="result">?
                 </div>
 			</section>
@@ -27,21 +28,22 @@
 			<section class="main">
 				<!--\ left -->
 				<div class="left">
-					<input type="number" class="inputField" />
-					<button class="btn">Check</button>
+					<input type="number" class="inputField" min="1" max="20"/>
+					<button class="btn check">Check</button>
 				</div>
 
 				<!--\ right  -->
 				<div class="right">
 					<p class="msg">Game starting...</p>
-					<p>🥇Score: <span>10</span></p>
+					<p>🥇Guesses: <span class="guesses">10</span></p>
 					<p>📋Top-Score: <span>0</span></p>
 					<p>💯Point : <span>0</span></p>
 				</div>
 			</section>
-
+			
             <!-- score board -->
             <section></section>
 		</main>
+		<script src="game.js"></script>
 	</body>
 </html>
