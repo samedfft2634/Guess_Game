@@ -7,23 +7,42 @@ const leftDiv = document.querySelector(".left");
 const guesses = document.querySelector(".guesses");
 const title = document.querySelector(".title");
 const result = document.querySelector(".result");
+const preGue = document.querySelector(".prev");
+const difficult = document.querySelector(".difficult");
+const level = document.querySelector(".dif-level");
+
+let maxRandom = localStorage.getItem("maxRandom") ? parseInt(localStorage.getItem("maxRandom"),10) : 20
+
 
 againBtn.style.visibility = "hidden";
-// window.addEventListener("load", () => {
-// 	inputField.focus();
-// });
-let random = Math.ceil(Math.random() * 20);
+window.addEventListener("load", () => {
+	inputField.focus();
+});
+inputField.style.outline = "none";
+let random = Math.ceil(Math.random() * maxRandom);
 let score = 10;
 let highestScore = 0;
 console.log(random);
 
 inputField.addEventListener("input", () => {
-    inputField.value = inputField.value.replace(/[e\.-]/gi, "");
+	inputField.value = inputField.value.replace(/[e\.-]/gi, "");
+	if(inputField.value > 20 || inputField.value == 0){
+		inputField.value =inputField.value.slice(0,-1)
+	}
 });
+difficult.addEventListener("click",()=>{
+	maxRandom = 50
+	difficult.style.backgroundColor = "red"
+	difficult.style.color = "#fff"
+	difficult.textContent = "Difficult"
+	level.textContent = "(1-50)"
+	localStorage.setItem("maxRandom",maxRandom)
+	random = Math.ceil(Math.random()* maxRandom)
+	console.log(random)
+})
 
 inputField.addEventListener("focus", () => {
-	msg.innerText = "Game Started!";
-	inputField.style.outline = "none";
+	title.innerText = "Game Started!";
 });
 
 const checkClick = () => {
@@ -47,6 +66,7 @@ const checkClick = () => {
 	} else {
 		if (score > 1) {
 			score--;
+			preGue.textContent = inputField.value;
 			guesses.textContent = score;
 			inputField.value < random
 				? (msg.textContent = "Higher 👆")
@@ -60,6 +80,7 @@ const checkClick = () => {
 				"linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%)";
 			againBtn.style.visibility = "visible";
 			leftDiv.style.display = "none";
+			preGue.textContent = inputField.value;
 		}
 	}
 };
@@ -76,5 +97,6 @@ againBtn.addEventListener("click", () => {
 	guesses.textContent = 10;
 	score = 10;
 	random = Math.ceil(Math.random() * 20);
+	preGue.textContent = "";
 	console.log(random);
 });
