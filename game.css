@@ -22,7 +22,9 @@ body {
     border: none;
     border-radius: 1rem;
 }
-
+.check{
+    width: 100%;
+}
 .difficulty{
     display: flex;
     align-items: center;
@@ -80,14 +82,15 @@ body {
 
 .main .left .inputField{
     border-radius: 1rem;
+    font-size: 3rem;
     padding: 1.5rem;
-    width: 7.5rem;
+    width: 12rem;
     border: none;
 }
 
 input[type=number]:hover::-webkit-inner-spin-button {  
-    width: 14px;
-    height: 40px;
+    width: 50px;
+    height: 80px;
 }
 .main .right{
     line-height: 2rem;

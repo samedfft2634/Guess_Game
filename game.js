@@ -10,23 +10,49 @@ const result = document.querySelector(".result");
 const preGue = document.querySelector(".prev");
 const difficult = document.querySelector(".difficult");
 const level = document.querySelector(".dif-level");
+const point = document.querySelector(".point");
+const multi = document.querySelector(".multi");
 
 let maxRandom = localStorage.getItem("maxRandom") ? parseInt(localStorage.getItem("maxRandom"),10) : 20
 let difficulty = localStorage.getItem("difficulty") || "Easy";
 
 	
 againBtn.style.visibility = "hidden";
-window.addEventListener("load", () => {
-	inputField.focus();
-});
+// window.addEventListener("load", () => {
+// 	inputField.focus();
+// });
 inputField.style.outline = "none";
 let random = Math.ceil(Math.random() * maxRandom);
 let score = 10;
-console.log(random);
+
+// enter 
+body.addEventListener("keyup",(e)=>{
+	if(e.key === "Enter" && (inputField.value != random) ){
+		inputField.focus();
+		checkClick()
+	} else if(e.key === "Enter" && inputField.value == random){
+		msg.textContent = " Conguratulations! You Won 👏 🎉";
+		body.style.background = "linear-gradient(to right, #dce35b, #45b649)";
+		leftDiv.style.display = "none";
+		let icon = document.createElement("img");
+		icon.src = "./assets/smile-icon.png";
+		icon.className = "smile";
+		result.textContent = "";
+		result.appendChild(icon);
+		againBtn.style.visibility = "visible";
+		(difficulty === "Easy") ? (point.textContent = (score - 1) * 10) : (point.textContent = (score - 1) * 20)
+		guesses.textContent = score - 1;
+		preGue.textContent = inputField.value;
+	} 
+	
+})
+
+
 
 //difficulty
 const applyEasyStyle = () => {
     difficult.textContent = "Easy";
+    multi.textContent = "";
     difficult.style.backgroundColor = "limegreen";
     difficult.style.color = "#fff";
     difficult.style.padding = ".7rem 2.2rem";
@@ -35,7 +61,13 @@ const applyEasyStyle = () => {
 };
 
 const applyDifficultStyle = () => {
+	Swal.fire({
+		icon: "info",
+		title: " x2 😈",
+		text: "DOUBLE SCORE & Difficult",
+	});
     difficult.textContent = "Difficult";
+    multi.textContent = "x2 Point";
     difficult.style.backgroundColor = "red";
     difficult.style.color = "#fff";
     difficult.style.padding = ".7rem ";
@@ -52,6 +84,7 @@ window.addEventListener("load", () => {
         applyEasyStyle();
     }
     random = Math.ceil(Math.random() * maxRandom);
+	console.log(random) // debug 
 });
 //
 
@@ -104,7 +137,9 @@ const checkClick = () => {
 		result.textContent = "";
 		result.appendChild(icon);
 		againBtn.style.visibility = "visible";
+		(difficulty === "Easy") ? (point.textContent = score * 10) : (point.textContent = score * 20)
 		guesses.textContent = --score;
+		preGue.textContent = inputField.value;
 	} else {
 		if (score > 1) {
 			score--;
@@ -123,6 +158,7 @@ const checkClick = () => {
 			againBtn.style.visibility = "visible";
 			leftDiv.style.display = "none";
 			preGue.textContent = inputField.value;
+			point.textContent = 0
 		}
 	}
 };
@@ -138,7 +174,8 @@ againBtn.addEventListener("click", () => {
 	result.textContent = "?";
 	guesses.textContent = 10;
 	score = 10;
-	difficult.click()
 	preGue.textContent = "";
+	point.textContent = 0
+    random = Math.ceil(Math.random() * maxRandom);
 	console.log(random);
 });
