@@ -103,7 +103,7 @@ difficult.addEventListener("click", () => {
 	localStorage.setItem("difficulty", difficulty);
 	localStorage.setItem("maxRandom", maxRandom.toString());
 	random = Math.ceil(Math.random() * maxRandom);
-	console.log("yeni sayi ", random);
+	// console.log("yeni sayi ", random);
 	inputField.classList.remove("win-repeat");
 });
 /// ================== end of difficult ================== */
@@ -154,10 +154,10 @@ body.addEventListener("keyup", (e) => {
 			inputField.classList.add("win-repeat");
 			// counter = 1;
 		} else {
-			console.log("aa");
-			console.log(inputField.value);
-			console.log(random);
-			console.log(counter);
+			// debugging
+			// console.log(inputField.value);
+			// console.log(random);
+			// console.log(counter);
 		}
 	}
 });
@@ -220,7 +220,7 @@ againBtn.addEventListener("click", () => {
 	point.textContent = 0;
 	random = Math.ceil(Math.random() * maxRandom);
 	inputField.classList.remove("win-repeat");
-	console.log(random);
+	// console.log(random);
 });
 
 let winFunc = () => {
