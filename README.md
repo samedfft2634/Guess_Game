@@ -14,7 +14,7 @@ Guess the number . DOM Practice
 
 
 > [!IMPORTANT]
-> <a href="guess-the-number-seven-pi.vercel.app" >🔟LIVE🔟</a> <br>
+> <a href="https://guess-the-number-seven-pi.vercel.app/" >🔟LIVE🔟</a> <br>
 
 > [!WARNING]  
 > Does not include top 5 right now. <br>
