@@ -8,6 +8,10 @@
 
 body {
     background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh
 }
 .navbar {
     /* background-color: red; */
@@ -25,6 +29,10 @@ body {
 .check{
     width: 100%;
 }
+.check:hover {
+    background-color: limegreen;
+    color: #fff;
+}
 .difficulty{
     display: flex;
     align-items: center;
@@ -39,7 +47,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    height: calc(100vh - 61px);
+    height:calc(100vh - 138px)
+    /* height: 100vh; */
 }
 
 /* ======================= header ======================= */
@@ -80,6 +89,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 1rem;
+	transition: 0.5s;
 }
 
 .main .left .inputField{
@@ -87,7 +97,15 @@ body {
     font-size: 3rem;
     padding: 1.5rem;
     width: 12rem;
-    border: none;
+    color:#fff;
+    border: 2px solid black;
+    background: transparent;
+}
+
+.inputField:hover{
+    border: 2px solid turquoise;
+	box-shadow: 0 0 10px turquoise, inset 0 0 10px turquoise;
+	transition: 0.5s;
 }
 
 input[type=number]:hover::-webkit-inner-spin-button {  
@@ -110,6 +128,57 @@ input[type=number]:hover::-webkit-inner-spin-button {
     width: 90px;
     animation: shake 2s ease 0s 1 normal forwards;
 }
+
+
+@media screen and (max-width: 992px) {
+    .header{
+        margin-top: 0;
+    }
+    .header h1{
+        font-size: 1rem;
+    }
+    .main{
+        /* border: 2px solid red; */
+        width: 100%;
+        padding: 0;
+        padding: 2rem;
+    }
+    .check{
+        width: 12rem;
+    }
+    .main .right{
+        text-align: center;
+        line-height: 3rem;
+    }
+} 
+
+
+@media  screen and (max-width: 600px) {
+    .header{
+        margin-top: 0;
+    }
+    .header h1{
+        font-size: 1rem;
+    }
+    .main{
+        /* border: 2px solid red; */
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+    .check{
+        width: 12rem;
+    }
+    .main .right{
+        border: 2px solid red;
+        width: 100%;
+        text-align: center;
+        line-height: 3rem;
+        padding-left: 2rem;
+    }
+}
+
 
 @media screen and (max-width:400px) {
     .header{

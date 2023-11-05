@@ -87,7 +87,7 @@ window.addEventListener("load", () => {
 		applyEasyStyle();
 	}
 	random = Math.ceil(Math.random() * maxRandom);
-	console.log(random); // debug
+	// console.log(random); // debug
 });
 //
 
