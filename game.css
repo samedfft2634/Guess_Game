@@ -11,7 +11,8 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    min-height: 100vh
+    min-height: 100vh;
+    background-attachment: fixed;
 }
 .navbar {
     /* background-color: red; */
@@ -171,7 +172,7 @@ input[type=number]:hover::-webkit-inner-spin-button {
         width: 12rem;
     }
     .main .right{
-        border: 2px solid red;
+        /* border: 2px solid red; */
         width: 100%;
         text-align: center;
         line-height: 3rem;
